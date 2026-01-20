@@ -5,7 +5,8 @@ FROM 84codes/crystal:latest-alpine AS base
 
 ARG VERSION
 
-# RUN apt-get update && apt-get install -y liblz4-dev dpkg-dev
+RUN apk add build-base lz4-dev
+
 WORKDIR /usr/src/lavinmq
 
 ADD https://raw.githubusercontent.com/cloudamqp/lavinmq/refs/tags/v${VERSION}/shard.lock .

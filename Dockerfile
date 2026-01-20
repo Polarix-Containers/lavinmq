@@ -73,5 +73,5 @@ EXPOSE 5672 15672
 
 ENTRYPOINT ["/usr/bin/lavinmq", "-b", "0.0.0.0", "--guest-only-loopback=false"]
 
-HEALTHCHECK 
+HEALTHCHECK \
     CMD ["/usr/bin/lavinmqctl", "status"]

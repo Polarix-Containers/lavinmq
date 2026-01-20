@@ -20,6 +20,7 @@ ADD https://github.com/cloudamqp/lavinmq.git#${VERSION}:src ./src
 # Run specs on build platform
 FROM base AS spec
 
+ARG VERSION
 ARG spec_args="--order random"
 
 ADD https://github.com/cloudamqp/lavinmq.git#${VERSION}:spec ./spec
@@ -32,6 +33,8 @@ RUN apk add etcd \
 # Lint in another layer
 FROM base AS lint
 
+ARG VERSION
+
 ADD https://raw.githubusercontent.com/cloudamqp/lavinmq/refs/tags/v${VERSION}/.ameba.yml .
 
 RUN shards install \
@@ -43,9 +46,10 @@ RUN shards install \
 # Build
 FROM base AS builder
 
+ARG VERSION
 ARG MAKEFLAGS=-j2
 
-COPY Makefile .
+ADD https://raw.githubusercontent.com/cloudamqp/lavinmq/refs/tags/v${VERSION}/Makefile .
 
 RUN make js lib \
     && make all

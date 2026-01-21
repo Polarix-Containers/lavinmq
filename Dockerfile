@@ -11,6 +11,7 @@ RUN apk add build-base lz4-dev
 
 WORKDIR /usr/src/lavinmq
 
+ADD https://raw.githubusercontent.com/cloudamqp/lavinmq/refs/tags/v${VERSION}/shard.yml .
 ADD https://raw.githubusercontent.com/cloudamqp/lavinmq/refs/tags/v${VERSION}/shard.lock .
 RUN shards install --production
 

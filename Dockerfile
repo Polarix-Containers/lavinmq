@@ -4,7 +4,7 @@ ARG VERSION=2.6.3
 FROM 84codes/crystal:latest-alpine AS builder
 
 ARG VERSION
-ARG MAKEFLAGS=-j2
+ENV MAKEFLAGS=-j2
 
 RUN apk add build-base curl lz4-dev
 
@@ -24,9 +24,11 @@ ADD https://raw.githubusercontent.com/cloudamqp/lavinmq/refs/heads/main/Makefile
 RUN make js lib \
     && make all
 
-
+# ======================================= #
 
 FROM alpine:latest
+
+LABEL maintainer="Thien Tran contact@tommytran.io"
 
 ENV GC_UNMAP_THRESHOLD=1
 ENV CRYSTAL_LOAD_DEBUG_INFO=1

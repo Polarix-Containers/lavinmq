@@ -55,9 +55,9 @@ ARG MAKEFLAGS=-j2
 ADD https://raw.githubusercontent.com/cloudamqp/lavinmq/refs/heads/main/Makefile .
 
 RUN apk add build-base curl \
-    && make js lib
+    && make js lib \
+    && make all
 
-RUN make all
 
 
 # Resulting image with minimal layers

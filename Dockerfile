@@ -6,7 +6,7 @@ FROM 84codes/crystal:latest-alpine AS builder
 ARG VERSION
 ENV MAKEFLAGS=-j2
 
-RUN apk add build-base curl lz4-dev
+RUN apk add build-base curl lz4-dev openssl
 
 WORKDIR /usr/src/lavinmq
 
